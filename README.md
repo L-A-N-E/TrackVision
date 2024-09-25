@@ -86,7 +86,7 @@ Você pode acessar o [código do projeto](code/TrackVisionCode.ino) ou a [simula
 
 <details>
   <summary>Imagem da Montagem</summary>
-  <img src="" alt="imagem-montagem">
+  <img src="https://github.com/user-attachments/assets/d7734bf3-a731-49b7-b120-20c9a60e2b51" alt="imagem-montagem">
 </details>
 
 <h3>Cuidados durante a montagem :warning:</h3>
