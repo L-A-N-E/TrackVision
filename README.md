@@ -2,6 +2,13 @@
 
 ![banner](https://github.com/L-A-N-E/CP2_Edge_1SEM/assets/153787379/132308ff-27a0-45e7-8323-80d9103f2390)
 
+<h1 align="center">Outros Idiomas</h1>
+
+<p align="center">
+<a href="README.md" align="center">Português</a> •
+<a href="README-EN.md" align="center">Inglês</a> 
+</p>
+
 ## Índice :page_with_curl:
 
 * [Descrição do Projeto](#descrição-do-projeto-memo)
