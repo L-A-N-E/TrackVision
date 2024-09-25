@@ -15,6 +15,7 @@
 * [Montagem](#montagem-wrench)
    * [Cuidados durante a montagem](#cuidados-durante-a-montagem-warning)
 * [Reprodução](#reprodução-gear)
+* [Como utilizar o TrackVision](#como-utilizar-o-trackVision-pushpin)
 * [Pessoas Desenvolvedoras do Projeto](#pessoas-desenvolvedoras-do-projeto-globe_with_meridians)
 
 
@@ -148,6 +149,17 @@ Você pode acessar o [código do projeto](code/TrackVisionCode.ino) ou a [simula
 - ``7.`` Com tudo montado e pronto, é necessário levá-lo para o ambiente em que será implementado e ligá-lo á uma fonte;
 
 <p align='center'><i>OBS: Se o ESP32 for uma versão mais antiga, pode ser necessário pressionar o botão BOOT na placa durante a transferência do código </i></p>
+
+## Como utilizar o TrackVision :pushpin:
+
+- ``1.`` Espere a conexão com a internet, checando o monitor serial.
+- ``2.`` Clique no POWER, e espere a conexao com o MQTT.
+- ``3.`` Cada clique no POWER contará uma volta e mostrará o tempo dela.
+- ``4.`` Na penúltima volta, aperte o 0 uma vez, após apertar o 0, o proximo clique no POWER encerrará a corrida.
+- ``5.`` Mensagem final será mostrada com o tempo total da corrida.
+- ``6.`` Se por acaso, voce iniciou a corrida sem querer, para voltar ao MENU, aperte MENU no IR-Controller.
+ 
+  
 
 ## Pessoas Desenvolvedoras do Projeto :globe_with_meridians:
 
