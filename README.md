@@ -7,6 +7,7 @@
 * [Descrição do Projeto](#descrição-do-projeto-memo)
    * [Introdução](#introdução-1st_place_medal)
    * [ESP32](#ESP32-pager)
+* [Objetivos do Projeto](#objetivos-do-projeto-dart)
 * [Acesso ao projeto](#acesso-ao-projeto-file_folder)
 * [Ferramentas utilizadas](#ferramentas-utilizadas-hammer_and_wrench)
 * [Bibliotecas utilizadas](#bibliotecas-utilizadas-books)
@@ -32,6 +33,25 @@ O ESP32 é um microcontrolador que facilita a conexão com a Internet, possibili
 <p>
 Para monitorar e visualizar o fluxo de dados do ESP32, utilizamos o Postman, uma ferramenta que facilita a execução de requisições HTTP e a análise de respostas. Com o Postman, testamos as APIs, verificamos a integração dos dados e garantimos que a comunicação entre o dispositivo e o servidor funcione conforme o esperado.
 </p>
+
+## Objetivos do Projeto :dart:
+
+<p>
+O objetivo principal do projeto TrackVision é desenvolver um sistema de cronometragem de corridas que seja eficiente e fácil de usar. As metas específicas incluem:
+</p>
+
+- ``1.`` Captura de Voltas em Tempo Real:
+    - ``1.1`` Implementar a capacidade de capturar os tempos de volta em tempo real, utilizando o ESP32 e sensores adequados.
+- ``2.`` Transmissão de Dados: 
+    - ``2.1`` Criar uma infraestrutura para enviar os dados de volta para a nuvem, permitindo o monitoramento em tempo real e a análise posterior.
+- ``3.`` Interface Amigável: 
+    - ``3.1`` Desenvolver uma interface de usuário que seja intuitiva e forneça informações claras sobre o desempenho dos corredores.
+
+- ``4.`` Escalabilidade: 
+    - ``4.1`` Garantir que o sistema possa ser facilmente escalado para atender a diferentes tipos de corridas e número de participantes.
+
+- ``5.`` Robustez e Confiabilidade:
+    - ``5.1`` Assegurar que o sistema funcione de maneira consistente em diferentes condições de corrida e ambientes.
 
 ## Acesso ao projeto :file_folder:
 
@@ -102,13 +122,35 @@ Você pode acessar o [código do projeto](code/TrackVisionCode.ino) ou a [simula
 ## Reprodução :gear:
 
 - ``1.`` Após a montagem do projeto, é necessário inserir o código por meio de um computador que possui o programa Arduino IDE instalado;
-- ``2.`` Baixe as [bibliotecas necessárias](#bibliotecas-utilizadas-books) no Arduino IDE; 
-- ``3.`` Transferir o código do computador para  o ESP32 por meio do Cabo USB;
-- ``4.`` Testar para ver se está funcionando;
-- ``5.`` Com tudo montado e pronto, é necessário levá-lo para o ambiente em que será implementado e ligá-lo á uma fonte;
+- ``2.``Ao abrir a IDE, é necessário fazer algumas coisas para selecionar o ESP32:
+  - ``2.1.`` Clique em **Arquivo** > **Preferências**.
+    - ``2.1.1.`` No campo **URLs Adicionais para Gerenciadores de Placas**, adicione o seguinte link: *https://dl.espressif.com/dl/package_esp32_index.json*;
+  - ``2.2.`` Clique em **Ferramentas** > **Placas** > **Gerenciar Placas**.
+    - ``2.2.1.`` Na janela que se abre, digite *ESP32* na caixa de pesquisa;
+    - ``2.2.2.`` Selecione a plataforma *esp32* da lista e clique em Instalar;
+  - ``2.3.`` Após a instalação, vá novamente em **Ferramentas** > **Placas**.
+    - ``2.3.1.`` Você verá uma nova opção para selecionar as placas ESP32. Escolha a placa específica que você está usando;
+- ``3.`` Baixe as [bibliotecas necessárias](#bibliotecas-utilizadas-books) no Arduino IDE;
+- ``4.`` Faça as devidas modificações no código disponível:
+  
+  ```cpp
+    const char* default_SSID = "SUA_INTERNET"; // Nome da rede Wi-Fi 
+    const char* default_PASSWORD = "SENHA_DA_SUA_INTERNET"; // Senha da rede Wi-Fi 
+    const char* default_BROKER_MQTT = "IP_PÚBLICO"; // IP do Broker MQTT 
+  ```
+
+  - ``4.1.`` Substitua a "SUA_INTERNET" pelo nome de sua internet;
+  - ``4.2.`` Substitua a "SENHA_DA_SUA_INTERNET" pela senha de sua internet;
+  - ``4.3.`` Substitua o "IP_PÚBLICO" pelo ip do servidor do Cloud Service de sua preferência:
+    - ``4.3.1.`` Não disponibilizamos o IP por motivos de segurança. Para testar este código, você precisará de um serviço de nuvem, como Azure ou AWS. Além disso, será necessário instalar o FIWARE e o Docker nesse serviço e, por fim, abrir as portas necessárias. 
+- ``5.`` Transferir o código do computador para  o ESP32 por meio do Cabo USB;
+- ``6.`` Teste o sistema para verificar se ele está recebendo instruções e enviando dados via Postman;
+- ``7.`` Com tudo montado e pronto, é necessário levá-lo para o ambiente em que será implementado e ligá-lo á uma fonte;
+
+<p align='center'><i>OBS: Se o ESP32 for uma versão mais antiga, pode ser necessário pressionar o botão BOOT na placa durante a transferência do código </i></p>
 
 ## Pessoas Desenvolvedoras do Projeto :globe_with_meridians:
 
-| [<img src="https://avatars.githubusercontent.com/u/101829188?v=4" width=115><br><sub>Alice Santos Bulhões</sub>](https://github.com/AliceSBulhoes) |  [<img src="https://avatars.githubusercontent.com/u/163866552?v=4" width=115><br><sub>Eduardo Oliveira Cardoso Madid</sub>](https://github.com/EduardoMadid) |  [<img src="https://media.licdn.com/dms/image/D5603AQF59776BVSUSg/profile-displayphoto-shrink_800_800/0/1697337839569?e=1723680000&v=beta&t=YkJsytMw1CG6PAHW1B371ZOdpjAAh0rWPrXhXnDMCw4" width=115><br><sub>Lucas Henzo Ide Yuki</sub>](https://github.com/LucasYuki1) | [<img src="https://avatars.githubusercontent.com/u/153787379?v=4" width=115><br><sub>Nicolas Haubricht Hainfellner</sub>](https://github.com/NicolasHaubricht) |
+| [<img src="https://avatars.githubusercontent.com/u/101829188?v=4" width=115><br><sub>Alice Santos Bulhões</sub>](https://github.com/AliceSBulhoes) |  [<img src="https://avatars.githubusercontent.com/u/163866552?v=4" width=115><br><sub>Eduardo Oliveira Cardoso Madid</sub>](https://github.com/EduardoMadid) |  [<img src="https://avatars.githubusercontent.com/u/148162404?v=4" width=115><br><sub>Lucas Henzo Ide Yuki</sub>](https://github.com/LucasYuki1) | [<img src="https://avatars.githubusercontent.com/u/153787379?v=4" width=115><br><sub>Nicolas Haubricht Hainfellner</sub>](https://github.com/NicolasHaubricht) |
 | :---: | :---: | :---: | :---: |
-| RM:554499 | RM:556349 | RM:554865 | RM:556259 |
+| RM:554499 | RM:556349 | RM:554865 | RM:556259 |
