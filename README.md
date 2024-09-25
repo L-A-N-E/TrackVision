@@ -158,8 +158,7 @@ Você pode acessar o [código do projeto](code/TrackVisionCode.ino) ou a [simula
 - ``4.`` Na penúltima volta, aperte o 0 uma vez, após apertar o 0, o proximo clique no POWER encerrará a corrida.
 - ``5.`` Mensagem final será mostrada com o tempo total da corrida.
 - ``6.`` Se por acaso, voce iniciou a corrida sem querer, para voltar ao MENU, aperte MENU no IR-Controller.
- 
-  
+
 
 ## Pessoas Desenvolvedoras do Projeto :globe_with_meridians:
 
