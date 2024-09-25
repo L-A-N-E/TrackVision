@@ -1,3 +1,4 @@
+// Bibliotecas utilizadas
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <IRremote.h>
@@ -28,9 +29,9 @@ unsigned long currentMillis;
 unsigned long elapsedMillis;
 
 // Configurações - variáveis editáveis
-const char* default_SSID = "Wokwi-GUEST"; 
-const char* default_PASSWORD = ""; // Senha da rede Wi-Fi 
-const char* default_BROKER_MQTT = "74.249.83.253"; // IP do Broker MQTT 
+const char* default_SSID = "NOME_DA_SUA_REDE"; // Nome da rede Wi-Fi
+const char* default_PASSWORD = "SENHA_DA_SUA_REDE"; // Senha da rede Wi-Fi 
+const char* default_BROKER_MQTT = "IP_PÚBLICO"; // IP do Broker MQTT 
 const int default_BROKER_PORT = 1883; // Porta do Broker MQTT
 const char* default_TOPICO_SUBSCRIBE = "/TEF/TRV027/cmd"; // Tópico MQTT de escuta
 const char* default_TOPICO_PUBLISH_1 = "/TEF/TRV027/attrs/t"; // Tópico MQTT de envio de informações para Broker
@@ -51,10 +52,10 @@ char* TOPICO_PUBLISH_2 = const_cast<char*>(default_TOPICO_PUBLISH_2);
 char* ID_MQTT = const_cast<char*>(default_ID_MQTT);
 int D4 = default_D4;
 
-WiFiClient espClient;
-PubSubClient MQTT(espClient);
+WiFiClient espClient; // Inicia o Wifi
+PubSubClient MQTT(espClient); // Inicia o MQTT
 
-//Funcoes para envio de dados
+// Inicia o Wi-Fi
 void initWiFi() {
     delay(10);
     Serial.println("------Conexao WI-FI------");
@@ -64,10 +65,12 @@ void initWiFi() {
     reconectWiFi();
 }
 
+// Inicia a conexão com o MQTT
 void initMQTT() {
     MQTT.setServer(BROKER_MQTT, BROKER_PORT);
 }
 
+// Checa se o wifi esta conectado, se não tenta novamente
 void reconectWiFi() {
     if (WiFi.status() == WL_CONNECTED)
         return;
@@ -86,12 +89,14 @@ void reconectWiFi() {
     digitalWrite(D4, LOW);
 }
 
+// Verifica se está conectado com o MQTT e o Wifi
 void VerificaConexoesWiFIEMQTT() {
     if (!MQTT.connected())
         reconnectMQTT();
     reconectWiFi();
 }
 
+// Checa se o MQTT esta conectado, se não tenta novamente
 void reconnectMQTT() {
     while (!MQTT.connected()) {
         Serial.print("* Tentando se conectar ao Broker MQTT: ");
@@ -107,6 +112,7 @@ void reconnectMQTT() {
     }
 }
 
+// Envia ao MQTT o tempo exato e o tempo da volta, tudo formatado
 void handleLapTime(unsigned long lapTimeMillis, DateTime exactLapTime) {
   if (timeMeasured) {
     // Formata o tempo exato da volta como "hh:mm:ss"
@@ -131,14 +137,14 @@ void handleLapTime(unsigned long lapTimeMillis, DateTime exactLapTime) {
 }
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(115200); // Inicializa a comunicação serial
   clearSerialMonitor();
-  lcd.init();
-  lcd.backlight();
+  lcd.init(); // Inicia o lcd
+  lcd.backlight(); // Liga a luz de trás do lcd
 
   displayMenu();
 
-  receiver.enableIRIn(); 
+  receiver.enableIRIn(); // Habilita o receptor IR
 
   initWiFi();
   initMQTT();
@@ -152,23 +158,24 @@ void setup() {
 }
 
 void loop() {
-  if (receiver.decode()) {
+  if (receiver.decode()) { // Verifica se houve decodificação do sinal recebido
     VerificaConexoesWiFIEMQTT();
-    translateIR();
-    receiver.resume();
-    MQTT.loop();
+    translateIR(); // Processa o comando IR
+    receiver.resume(); // Prepara o IR receptor para a proxima leitura
+    MQTT.loop(); // Mantém a conexão MQTT ativa
   }
 }
 
-void translateIR() {
-  switch (receiver.decodedIRData.command) {
-    case 162:
-      handleTimeMeasurement();
+// Traduz o comando Ir recebido
+void translateIR() { 
+  switch (receiver.decodedIRData.command) { // Verifica o comando IR recebido
+    case 162: // Se o comando for 162
+      handleTimeMeasurement(); // Chama a função para medir o tempo
       break;
-    case 226:
-      resetRace();
+    case 226: // Se o comando for 266
+      resetRace();// Chama a função para resetar a corrida
       break;
-    case 104:
+    case 104: // Se o comando for 104
       isLastLap = true;
       break;
     default:
@@ -178,6 +185,7 @@ void translateIR() {
   }
 }
 
+// Mede o tempo
 void handleTimeMeasurement() {
   if (!firstPress) {
     // Inicializa a primeira medição de tempo
@@ -204,9 +212,11 @@ void handleTimeMeasurement() {
     lcd.print("START");
     delay(50);
 
-    startMillis = millis();  // Captura o tempo em milissegundos
+    // Captura o tempo em milissegundos
+    startMillis = millis();  
     lcd.clear();
     lcd.setCursor(3, 0);
+    // Mostra o horário que começou a corrida no lcd
     lcd.print("INICIO:");
     lcd.setCursor(0, 3);
     lcd.print(firstPressTime.hour());
@@ -215,6 +225,7 @@ void handleTimeMeasurement() {
     lcd.print(":");
     lcd.println(firstPressTime.second());
 
+    // Mostra o horário que começou a corrida no monitor serial
     Serial.print("Começo da Corrida: ");
     Serial.print(firstPressTime.hour());
     Serial.print(":");
@@ -223,23 +234,26 @@ void handleTimeMeasurement() {
     Serial.println(firstPressTime.second());
 
     delay(2000);
-    timeMeasured = false;
+    timeMeasured = false; // Tempo não foi medido
 
   } else {
     // Captura o tempo exato da volta
-    secondPressTime = rtc.now();  // Captura o tempo do RTC
-    currentMillis = millis();     // Captura o tempo atual em milissegundos
+    secondPressTime = rtc.now(); 
+    // Captura o tempo atual em milissegundos
+    currentMillis = millis();     
     lapCount++;
 
-    unsigned long lapTimeMillis = currentMillis - startMillis;  // Calcula o tempo da volta em milissegundos
+    // Calcula o tempo da volta em milissegundos
+    unsigned long lapTimeMillis = currentMillis - startMillis;  
 
-    // Exibe o tempo da volta no Serial Monitor
+    // Exibe o tempo da volta em ms no Serial Monitor
     Serial.print("Volta ");
     Serial.print(lapCount);
     Serial.print(": ");
-    Serial.print(lapTimeMillis);  // Exibe diretamente o tempo em milissegundos
+    Serial.print(lapTimeMillis);  
     Serial.println("ms");
 
+    // Exibe o tempo da volta em ms no lcd
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print("Volta ");
@@ -252,11 +266,13 @@ void handleTimeMeasurement() {
     // Acumula o tempo total da corrida
     totalTime += lapTimeMillis;
 
+    // Tempo foi medido
     timeMeasured = true;
 
+    // Se for a ultima lap
     if (isLastLap) {
-      handleLapTime(lapTimeMillis, secondPressTime);
-      displayEndMessage();
+      handleLapTime(lapTimeMillis, secondPressTime); // Envia o tempo para o MQTT
+      displayEndMessage(); // Mostra o tempo total da corrida formatado
     } else {
       firstPressTime = secondPressTime;
       startMillis = currentMillis;  // Atualizar para a próxima volta
@@ -267,6 +283,7 @@ void handleTimeMeasurement() {
   }
 }
 
+// Mostra o menu no lcd
 void displayMenu() {
   lcd.clear();
   lcd.setCursor(2, 0);
@@ -274,6 +291,7 @@ void displayMenu() {
   delay(300);
 }
 
+// Reseta a corrida resetando todas as variavéis
 void resetRace() {
   firstPress = false;
   timeMeasured = false;
@@ -281,6 +299,7 @@ void resetRace() {
   totalTime = 0;
   isLastLap = false;
 
+  // Volta ao menu no lcd
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Voltando ao Menu");
@@ -289,6 +308,7 @@ void resetRace() {
   displayMenu();
 }
 
+// Mostra o tempo total da corrida no lcd formatado e no monitor serial
 void displayEndMessage() {
   lcd.clear();
   lcd.setCursor(6, 0);
@@ -322,6 +342,7 @@ void displayEndMessage() {
   resetRace();
 }
 
+// Transforma o valor total em milisegundos e transforma para horas minutos segundo e milisegundos
 void convertToHMS(unsigned long totalMillis, int *hours, int *minutes, int *seconds, int *milliseconds) {
     *hours = totalMillis / 3600000;       // Converter para horas
     totalMillis %= 3600000;
@@ -331,6 +352,7 @@ void convertToHMS(unsigned long totalMillis, int *hours, int *minutes, int *seco
     *milliseconds = totalMillis % 1000;   // Pegar o resto como milissegundos
 }
 
+// Limpa o monitor serial, printando várias linhas em branco
 void clearSerialMonitor() {
   // Número de linhas em branco para limpar o monitor serial
   int linesToPrint = 20;  // Ajuste conforme necessário
