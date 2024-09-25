@@ -62,3 +62,54 @@ Você pode acessar o [código do projeto](code/TrackVisionCode.ino) ou a [simula
 | LCD 16x2 com módulo I2C |     1      |
 | Real Time Clock - RTC |     1     |
 |    Cabo USB    |     1     |
+
+## Montagem :wrench:
+
+<details>
+  <summary>Imagem da Montagem</summary>
+  <img src="" alt="imagem-montagem">
+</details>
+
+<h3>Cuidados durante a montagem :warning:</h3>
+
+**Atenção!**
+**Lembrar de conectar os terminais negativos e positivos com o esp32 para passar a corrente!**
+
+- ``1.`` Conectando LCD:
+    - ``1.1.`` **Atenção!** Estamos utilizando um LCD 16x2 com um módulo I2C!;
+    - ``1.2.`` Conecte o VCC no terminal positivo (5V), GND no terminal negativo (GND), o SDA no pino 21 e o SCL no pino 22;
+    - ``1.3.`` Teste para ver se o display está funcionando, se tiver problemas com o display, pode ser algumas dessas possibilidades: o LCD está quebrado, com mal contato ou o contraste está baixo;
+        - ``1.3.1.`` Para aumentar o contraste do display basta girar o trimpot de ajuste do contraste no sentido anti-horário. Por sua vez, para diminuir o contraste gire no sentido horário.
+
+        <details>
+            <summary>Imagem de onde fica o trimpot de ajuste do contraste</summary>
+            <img src="https://github.com/L-A-N-E/CP2_Edge_1SEM/assets/101829188/50648d65-2402-4508-a47d-1d38bbf663e5" alt="Terminais do DHT11">
+            </details>
+
+- ``2.`` Conectando o RTC:
+  - ``2.1.`` Conecte o SCL no pino 22 (junto com o SCL do LCD) do arduino, o SDA no pino 21 (junto com o SDA do LCD), o 5V no terminal positivo do breadboard e o GND no terminal negativo do breadboard.
+  - ``2.2.`` O RTC é um componente delicado. Manipule com cuidado para evitar danos.
+  - ``2.3.`` Certifique-se de que o RTC esteja configurado com a hora correta. Uma configuração incorreta pode levar a erros no funcionamento do seu projeto.
+  - ``2.4.`` Verifique se o RTC está recebendo a alimentação adequada. Uma alimentação insuficiente ou excessiva pode danificar o RTC ou afetar seu funcionamento.
+
+- ``3.`` Conectando o IR-receiver:
+  - ``3.1.`` Conecte o 5V no terminal positivo do breadboard e o GND no terminal negativo do breadboard e o DATA conecte no pino 15.
+  - ``3.2.`` O IR-receiver é um componente delicado manipule o com cuidado.
+  - ``3.3.`` Verifique se o IR-receiver está recebendo a alimentação adequada. 
+
+- ``4.`` Utilizando o IR-remote:
+    - ``4.1.`` Confira os comandos que são enviados em cada botão do controle na documentação.
+
+## Reprodução :gear:
+
+- ``1.`` Após a montagem do projeto, é necessário inserir o código por meio de um computador que possui o programa Arduino IDE instalado;
+- ``2.`` Baixe as [bibliotecas necessárias](#bibliotecas-utilizadas-books) no Arduino IDE; 
+- ``3.`` Transferir o código do computador para  o ESP32 por meio do Cabo USB;
+- ``4.`` Testar para ver se está funcionando;
+- ``5.`` Com tudo montado e pronto, é necessário levá-lo para o ambiente em que será implementado e ligá-lo á uma fonte;
+
+## Pessoas Desenvolvedoras do Projeto :globe_with_meridians:
+
+| [<img src="https://avatars.githubusercontent.com/u/101829188?v=4" width=115><br><sub>Alice Santos Bulhões</sub>](https://github.com/AliceSBulhoes) |  [<img src="https://avatars.githubusercontent.com/u/163866552?v=4" width=115><br><sub>Eduardo Oliveira Cardoso Madid</sub>](https://github.com/EduardoMadid) |  [<img src="https://media.licdn.com/dms/image/D5603AQF59776BVSUSg/profile-displayphoto-shrink_800_800/0/1697337839569?e=1723680000&v=beta&t=YkJsytMw1CG6PAHW1B371ZOdpjAAh0rWPrXhXnDMCw4" width=115><br><sub>Lucas Henzo Ide Yuki</sub>](https://github.com/LucasYuki1) | [<img src="https://avatars.githubusercontent.com/u/153787379?v=4" width=115><br><sub>Nicolas Haubricht Hainfellner</sub>](https://github.com/NicolasHaubricht) |
+| :---: | :---: | :---: | :---: |
+| RM:554499 | RM:556349 | RM:554865 | RM:556259 |
