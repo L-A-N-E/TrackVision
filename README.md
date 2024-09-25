@@ -6,8 +6,7 @@
 
 * [Descrição do Projeto](#descrição-do-projeto-memo)
    * [Introdução](#introdução-1st_place_medal)
-   * [TimeTracker](#timetracker-2nd_place_medal)
-   * [Futuro do Projeto](#futuro-do-projeto-3rd_place_medal)
+   * [ESP32](#ESP32-pager)
 * [Acesso ao projeto](#acesso-ao-projeto-file_folder)
 * [Ferramentas utilizadas](#ferramentas-utilizadas-hammer_and_wrench)
 * [Bibliotecas utilizadas](#bibliotecas-utilizadas-books)
