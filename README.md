@@ -13,16 +13,17 @@
 
 * [Descrição do Projeto](#descrição-do-projeto-memo)
    * [Introdução](#introdução-1st_place_medal)
-   * [ESP32](#ESP32-pager)
+   * [ESP32](#esp32-pager)
 * [Objetivos do Projeto](#objetivos-do-projeto-dart)
 * [Acesso ao projeto](#acesso-ao-projeto-file_folder)
+* [Arquitetura do TrackVision](#arquitetura-do-trackvision-receipt)
 * [Ferramentas utilizadas](#ferramentas-utilizadas-hammer_and_wrench)
 * [Bibliotecas utilizadas](#bibliotecas-utilizadas-books)
 * [Componentes necessários](#componentes-necessários-toolbox)
 * [Montagem](#montagem-wrench)
    * [Cuidados durante a montagem](#cuidados-durante-a-montagem-warning)
 * [Reprodução](#reprodução-gear)
-* [Como utilizar o TrackVision](#como-utilizar-o-trackVision-pushpin)
+* [Como utilizar o TrackVision](#como-utilizar-o-trackvision-pushpin)
 * [Pessoas Desenvolvedoras do Projeto](#pessoas-desenvolvedoras-do-projeto-globe_with_meridians)
 
 
@@ -64,6 +65,11 @@ O objetivo principal do projeto TrackVision é desenvolver um sistema de cronome
 ## Acesso ao projeto :file_folder:
 
 Você pode acessar o [código do projeto](code/TrackVisionCode.ino) ou a [simulação feita no Wokwi](https://wokwi.com/projects/409286303085618177)
+
+## Arquitetura do TrackVision :receipt:
+
+![arquitetura_do_TrackVision](https://github.com/user-attachments/assets/523b4025-f1b8-47b1-bfe3-90cf43ca784d)
+
 
 ## Ferramentas utilizadas :hammer_and_wrench:
 
