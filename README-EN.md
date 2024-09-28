@@ -13,16 +13,17 @@
 
 * [Project Description](#project-description-memo)
    * [Introduction](#introduction-1st_place_medal)
-   * [ESP32](#ESP32-pager)
+   * [ESP32](#esp32-pager)
 * [Project Goals](#project-goals-dart)
 * [Access to the Project](#access-to-the-project-file_folder)
+* [TrackVision Architecture](#trackvision-architecture-receipt)
 * [Tools Used](#tools-used-hammer_and_wrench)
 * [Libraries Used](#libraries-used-books)
 * [Required Components](#required-components-toolbox)
 * [Assembly](#assembly-wrench)
    * [Precautions during assembly](#precautions-during-assembly-warning)
 * [Reproduction](#reproduction-gear)
-* [How to use TrackVision](#how-to-use-trackVision-pushpin)
+* [How to use TrackVision](#how-to-use-trackvision-pushpin)
 * [Project Developers](#project-developers-globe_with_meridians)
 
 
@@ -64,6 +65,10 @@ The main goal of the TrackVision project is to develop a race timing system that
 ## Access to the Project :file_folder:
 
 You can access the [project code](code/TrackVisionCode.ino) or the [simulation made in Wokwi](https://wokwi.com/projects/409286303085618177)
+
+## TrackVision Architecture :receipt:
+
+![arquitetura_do_TrackVision](https://github.com/user-attachments/assets/efb07bb1-1cfa-416c-aed6-2c94b619f5d4)
 
 ## Tools Used :hammer_and_wrench:
 
