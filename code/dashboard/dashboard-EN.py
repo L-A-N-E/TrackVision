@@ -23,7 +23,7 @@ def get_lap_data(lastN):
             return []
     return []  # Returning empty list if request failed
 
-app = dash.Dash(__name__, external_stylesheets=['./assets/style.css'])  # Initializing the Dash application
+app = dash.Dash(__name__, external_stylesheets=['./assets/styles.css'])  # Initializing the Dash application
 
 # Defining the layout of the application
 app.layout = html.Div(children=[
