@@ -23,6 +23,7 @@
 * [Assembly](#assembly-wrench)
    * [Precautions during assembly](#precautions-during-assembly-warning)
 * [Reproduction](#reproduction-gear)
+* [How to Reproduce the Dynamic Dashboard](#how-to-reproduce-the-dynamic-dashboard-chart_with_upwards_trend)
 * [How to use TrackVision](#how-to-use-trackvision-pushpin)
 * [Project Developers](#project-developers-globe_with_meridians)
 
@@ -143,7 +144,7 @@ You can access the [project code](code/TrackVisionCode.ino) or the [simulation m
     - ``2.2.2.`` Select the *esp32* platform from the list and click Install;
   - ``2.3.`` After installation, go again to **Tools** > **Boards**.
     - ``2.3.1.`` You will see a new option to select the ESP32 boards. Choose the specific board you are using;
-- ``3.`` Download the [necessary libraries](#bibliotecas-utilizadas-books) in the Arduino IDE;
+- ``3.`` Download the [necessary libraries](#libraries-used-books) in the Arduino IDE;
 - ``4.`` Make the necessary changes to the available code:
   
   ```cpp
@@ -160,6 +161,46 @@ You can access the [project code](code/TrackVisionCode.ino) or the [simulation m
 
 <p align='center'><i>NOTE: If the ESP32 is an older version, it may be necessary to press the BOOT button on the board during code transfer </i></p>
 
+## How to Reproduce the Dynamic Dashboard :chart_with_upwards_trend:
+
+- ``1.`` Start the virtual machine (VM) of your choice and open port `8050`.
+- ``2.`` Open the Linux terminal.
+- ``3.`` Follow the steps below:
+   - ``3.1.`` Create a folder and enter it:
+     ```bash
+     mkdir dashboard
+     cd dashboard
+     ```
+   - ``3.2.`` Create a Python file and copy the [Python code](code/dashboard/dashboard-EN.py) available in this repository into it:
+     - ``3.2.1.`` In the file, replace `IP_ADDRESS = "PUBLIC_IP"` with the IP of your preferred Cloud Service server.
+     ```bash
+     nano dashboard.py
+     ```
+
+   - ``3.3.`` Create an `assets` folder and enter it:
+     ```bash
+     mkdir assets
+     cd assets
+     ```
+
+   - ``3.4.`` Create a CSS file and copy the [code](code/dashboard/assets/styles.css) available in this repository into it:
+     ```bash
+     nano styles.css
+     ```
+
+- ``4.`` After the above steps, install the dependencies (like Dash):
+   ```bash
+   cd ..
+   pip install dash
+  ```
+
+- ``5.`` Start the Python code:
+   ```bash
+   python3 dashboard.py
+  ```
+
+- ``6.`` Finally, open your browser and visit: ``http://PUBLIC_IP:8050``
+   
 ## How to use TrackVision :pushpin:
 
 - ``1.`` Wait for the internet connection, checking the serial monitor.
