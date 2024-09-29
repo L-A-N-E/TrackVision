@@ -23,6 +23,7 @@
 * [Montagem](#montagem-wrench)
    * [Cuidados durante a montagem](#cuidados-durante-a-montagem-warning)
 * [Reprodução](#reprodução-gear)
+* [Como reproduzir o Dashboard Dinâmico](#como-reproduzir-o-dashboard-dinâmico-chart_with_upwards_trend)
 * [Como utilizar o TrackVision](#como-utilizar-o-trackvision-pushpin)
 * [Pessoas Desenvolvedoras do Projeto](#pessoas-desenvolvedoras-do-projeto-globe_with_meridians)
 
@@ -163,6 +164,51 @@ Você pode acessar o [código do projeto](code/TrackVisionCode.ino) ou a [simula
 
 <p align='center'><i>OBS: Se o ESP32 for uma versão mais antiga, pode ser necessário pressionar o botão BOOT na placa durante a transferência do código </i></p>
 
+## Como reproduzir o Dashboard Dinâmico :chart_with_upwards_trend:
+
+- ``1.`` Ligue a máquina virtual (VM) de sua escolha e abra a porta ``8050``.
+- ``2.`` Abra o terminal Linux.
+- ``3.`` Siga os passoas a seguir:
+  - ``3.1.`` Crie uma pasta e entre dentro dela:
+    ```bash
+      mkdir dashboard
+      cd dashboard
+    ```
+  - ``3.2.`` Crie um arquivo python e dentro do arquivo copie o [código em python](code/dashboard/dashboard.py) disponível neste repositório:
+    - ``3.2.1.`` No arquivo, substitua o ``IP_ADDRESS = "PUBLIC_IP"``  pelo IP do servidor do Cloud Service de sua preferência.
+      
+    ```bash
+      nano dashboard.py
+    ```
+  
+  - ``3.4.`` Crie uma pasta assets e entre dentro dela:
+    
+    ```bash
+      mkdir assets
+      cd assets
+    ```
+  
+  - ``3.5.`` Crie um arquivo css e dentro do arquivo copie o [código](code/dashboard/assets/styles.css) disponível neste repositório:
+    
+    ```bash
+      nano styles.css
+    ```
+  
+- ``4.`` Após os passos a cima, instale as depêndencias (como o Dash):
+
+   ```bash
+      cd ..
+      pip install dash
+    ```
+
+- ``4.`` Inicie o código em Python:
+
+   ```bash
+      python3 dashboard.py
+    ```
+
+- ``5.`` Por fim, abra seu navegador e pesquise: ``PUBLIC_IP:8050``
+
 ## Como utilizar o TrackVision :pushpin:
 
 - ``1.`` Espere a conexão com a internet, checando o monitor serial.
@@ -171,7 +217,6 @@ Você pode acessar o [código do projeto](code/TrackVisionCode.ino) ou a [simula
 - ``4.`` Na penúltima volta, aperte o 0 uma vez, após apertar o 0, o proximo clique no POWER encerrará a corrida.
 - ``5.`` Mensagem final será mostrada com o tempo total da corrida.
 - ``6.`` Se por acaso, voce iniciou a corrida sem querer, para voltar ao MENU, aperte MENU no IR-Controller.
-
 
 ## Pessoas Desenvolvedoras do Projeto :globe_with_meridians:
 
